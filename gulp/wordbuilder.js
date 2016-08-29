@@ -1,14 +1,14 @@
 const xmlParser = require('xml2json');
 const wordClass = {
-    nn: "substantiv",
-    jj: "adjektiv",
+    nn: "noun",
+    jj: "adjecktive",
     vb: "verb",
     in: "interjektion",
     pp: "preposition",
-    pn: "pronomen",
+    pn: "pronoun",
     ab: "adverb",
-    rg: "grundtal",
-    abbrev: "förkortning"
+    rg: "base",
+    abbrev: "abbrev"
 };
 function translationArray(arr){
     return arr.map(pair => {

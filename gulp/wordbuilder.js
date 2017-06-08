@@ -24,9 +24,9 @@ function wordBuilder(xml){
     var newWord = {
         value: word.value,
         lang: word.lang,
-        class: word.class && wordClass[word.class],
-        sound: word.phonetic && word.phonetic.soundFile,
-        pronoun: word.phonetic && word.phonetic.value 
+        klass: word.class && wordClass[word.class],
+        // sound: word.phonetic && word.phonetic.soundFile,
+        // pronoun: word.phonetic && word.phonetic.value 
     };
 
     if(word.paradigm && word.paradigm.inflection){
@@ -36,7 +36,7 @@ function wordBuilder(xml){
             newWord.inflection = [word.paradigm.inflection.value];
         }
     }
-    ['translation','synonym'].forEach(
+    ['translation'].forEach(
         key => {
             if (word[key] && word[key].constructor == Array){
                 newWord[key] = word[key].map(pair => pair.value);
@@ -46,20 +46,20 @@ function wordBuilder(xml){
         }
     );
 
-    ['definition','example','idiom','derivation','compund','explanation'].forEach(
+    // ['definition','example','idiom','derivation','compund','explanation'].forEach(
         
-        key => {
+    //     key => {
             
-            if(word[key] && word[key].constructor == Array){
-                newWord[key] = translationArray(word[key]);
+    //         if(word[key] && word[key].constructor == Array){
+    //             newWord[key] = translationArray(word[key]);
                 
-            }else if(word[key]){
+    //         }else if(word[key]){
                 
-                newWord[key]= translationArray([word[key]]);
-            }
-        }
-    );
-
+    //             newWord[key]= translationArray([word[key]]);
+    //         }
+    //     }
+    // );
+  
     return newWord;
 }
 

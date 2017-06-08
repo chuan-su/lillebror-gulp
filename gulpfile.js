@@ -34,9 +34,11 @@ gulp.task('download-dictionary',() => {
           fileStream = fs.createWriteStream(`${dictionary}.json`);
 
     wordStream.on('match',function(xml){
-        let word = wordBuilder(xml);
-        let wordString = JSON.stringify(word);
-        fileStream.write(wordString+os.EOL);
+      let word = wordBuilder(xml);
+      let wordString = JSON.stringify(word);
+      let es = {index: {_index: "klartext",_type: "word"}}
+      fileStream.write(JSON.stringify(es) + os.EOL)
+      fileStream.write(wordString+os.EOL);
     });
     
     request(`http://folkets-lexikon.csc.kth.se/folkets/${dictionary}.xml`)
